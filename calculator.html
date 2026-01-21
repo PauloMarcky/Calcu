@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="practice.css">
   <title>CALCULATORICISM</title>
   <style>
     body{
@@ -55,6 +54,11 @@
       font-weight: bold;
       text-align: right;
     }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
 
   </style>
 </head>
@@ -65,32 +69,32 @@
   </header>
 
   <div class="outer-container">
-    <input class="displayer" type="number">
+    <input class="displayer" type="text" readonly>
     <div>    
-      <button>AC</button>
+      <button class="clear">AC</button>
       <button>%</button>
-      <button><<</button>
-      <button>/</button>
+      <button class="backspace"><<</button>
+      <button class="division">/</button>
     </div>
     <div>    
       <button class="n7">7</button>
       <button class="n8">8</button>
       <button class="n9">9</button>
-      <button class="x">x</button>
+      <button class="multiplication">x</button>
     </div>
     <div>    
       <button class="n4">4</button>
       <button class="n5">5</button>
       <button class="n6">6</button>
-      <button class="-">-</button>
+      <button class="subtraction">-</button>
     </div>    
     <div>    
       <button class="n1">1</button>
       <button class="n2">2</button>
       <button class="n3">3</button>
-      <button class="+">+</button>
+      <button class="addition">+</button>
     </div>    
-    <div>    
+    <div>   
       <button class="n0">0</button>
       <button class=".">.</button>
       <button class="equal-button">=</button>
@@ -110,8 +114,17 @@
     const button_2 = document.querySelector('.n2');
     const button_3 = document.querySelector('.n3');
     const button_0 = document.querySelector('.n0');
-    const multiply = document.querySelector('.x')
-
+    const multiply_button = document.querySelector('.multiplication')
+    const division_button = document.querySelector('.division');
+    const addition_button = document.querySelector('.addition');
+    const subtraction_button = document.querySelector('.subtraction');
+    const js_clear = document.querySelector('.clear');
+    const js_backspace = document.querySelector('.backspace');
+    const equals = document.querySelector('.equal-button');
+    let f_number = '';
+    let s_number = '';
+    let current_op = '';
+    let result = '';
 
     function but7() {
       display.value += '7';
@@ -143,7 +156,66 @@
     function but0() {
       display.value += '0';
     }
-    // 2. Assign the function reference (NO parentheses)
+    function multiply() {
+      f_number = display.value
+      f_number = Number(f_number);
+      display.value = "";
+      current_op = "x";
+      console.log(typeof(f_number));
+    }
+    function divide() {
+      f_number = display.value
+      f_number = Number(f_number);
+      display.value = "";
+      current_op = "d";
+      console.log(typeof(f_number));
+    }
+    function add() {
+      f_number = display.value
+      f_number = Number(f_number);
+      display.value = "";
+      current_op = "a";
+      console.log(typeof(f_number));
+    }
+    function subtract() {
+      f_number = display.value;
+      f_number = Number(f_number);
+      display.value = "";
+      current_op = "s";
+      console.log(typeof(f_number));
+    }
+    function display_result(){
+      s_number = display.value;
+      s_number = Number(s_number);
+
+      if (current_op == "a"){
+        result = f_number + s_number;
+        result = Number(result);
+        display.value = `= ${result}`;
+      }
+      else if (current_op == "s"){
+        result = f_number - s_number;
+        result = Number(result);
+        display.value = `= ${result}`;
+      }
+      else if (current_op == "x"){
+        result = f_number * s_number;
+        result = Number(result);
+        display.value = `= ${result}`;
+      }
+      else if (current_op == "d"){
+        result = f_number / s_number;
+        result = Number(result);
+        display.value = `= ${result}`;
+      }
+    }
+    function clear_input(){
+      display.value = "";
+    }
+    function remove_end(){
+      display.value = display.value.slice(0, -1);
+    }
+
     button_7.onclick = but7;
     button_8.onclick = but8;
     button_9.onclick = but9;
@@ -154,6 +226,24 @@
     button_2.onclick = but2;
     button_3.onclick = but3;
     button_0.onclick = but0;
+    multiply_button.onclick = multiply;
+    division_button.onclick = divide;
+    addition_button.onclick = add;
+    subtraction_button.onclick = subtract;
+    equals.onclick = display_result;
+    js_clear.onclick = clear_input;
+    js_backspace.onclick = remove_end;
+
+
+    // algo
+    // input Number
+    // click operation
+    // get input number 
+    // input next number
+    // click equal
+    // get second number 
+    // if condition checking operation
+    // show result 
 
 
 
