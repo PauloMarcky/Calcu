@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="practice.css">
+  <title>CALCULATORICISM</title>
+  <style>
+    body{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .outer-container{
+      flex: 1 1 calc(25% - 10px); /* Grow, Shrink, Basis */
+      background-color: hsl(180, 2%, 11%);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px;
+      box-sizing: border-box; 
+      width: max-content;
+      height: 1000px;
+    }
+    .title{
+      text-align: center;
+    }
+    button{
+      width: 70px;
+      height: 70px;
+      margin: 2px;
+      border-radius: 10px;
+      background-color: rgb(61, 61, 61);
+      color: white;
+      border: none;
+      font-size: 18px;
+      font-family: Arial;
+      font-weight: bold;
+    }
+    .equal-button{
+      width: 146px;
+      margin: 1px;
+      background-color: hsl(25, 100%, 42%);
+    }
+    input{
+      width: 295px;
+      height: 60px;
+      margin-bottom: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 10px;
+      font-size: 30px;
+      padding: 0px 10px;
+      font-weight: bold;
+      text-align: right;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header class="title">
+    <h1>CALCULATORICISM</h1>
+  </header>
+
+  <div class="outer-container">
+    <input class="displayer" type="number">
+    <div>    
+      <button>AC</button>
+      <button>%</button>
+      <button><<</button>
+      <button>/</button>
+    </div>
+    <div>    
+      <button class="n7">7</button>
+      <button class="n8">8</button>
+      <button class="n9">9</button>
+      <button class="x">x</button>
+    </div>
+    <div>    
+      <button class="n4">4</button>
+      <button class="n5">5</button>
+      <button class="n6">6</button>
+      <button class="-">-</button>
+    </div>    
+    <div>    
+      <button class="n1">1</button>
+      <button class="n2">2</button>
+      <button class="n3">3</button>
+      <button class="+">+</button>
+    </div>    
+    <div>    
+      <button class="n0">0</button>
+      <button class=".">.</button>
+      <button class="equal-button">=</button>
+    </div>
+  </div>
+
+  <script>
+// 1. Use an attribute selector [class=""] for classes that are numbers
+    const display = document.querySelector('.displayer');
+    const button_7 = document.querySelector('.n7');
+    const button_8 = document.querySelector('.n8');
+    const button_9 = document.querySelector('.n9');
+    const button_4 = document.querySelector('.n4');
+    const button_5 = document.querySelector('.n5');
+    const button_6 = document.querySelector('.n6');
+    const button_1 = document.querySelector('.n1');
+    const button_2 = document.querySelector('.n2');
+    const button_3 = document.querySelector('.n3');
+    const button_0 = document.querySelector('.n0');
+    const multiply = document.querySelector('.x')
+
+
+    function but7() {
+      display.value += '7';
+    }
+    function but8() {
+      display.value += '8';
+    }
+    function but9() {
+      display.value += '9';
+    }
+    function but4() {
+      display.value += '4';
+    }
+    function but5() {
+      display.value += '5';
+    }
+    function but6() {
+      display.value += '6';
+    }
+    function but1() {
+      display.value += '1';
+    }
+    function but2() {
+      display.value += '2';
+    }
+    function but3() {
+      display.value += '3';
+    }
+    function but0() {
+      display.value += '0';
+    }
+    // 2. Assign the function reference (NO parentheses)
+    button_7.onclick = but7;
+    button_8.onclick = but8;
+    button_9.onclick = but9;
+    button_4.onclick = but4;
+    button_5.onclick = but5;
+    button_6.onclick = but6;
+    button_1.onclick = but1;
+    button_2.onclick = but2;
+    button_3.onclick = but3;
+    button_0.onclick = but0;
+
+
+
+
+
+  
+
+
+
+
+  </script>
+</body>
+</html>
