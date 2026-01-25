@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CALCULATORICISM</title>
+  <style>
+    body{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .outer-container{
+      flex: 1 1 calc(25% - 10px); /* Grow, Shrink, Basis */
+      background-color: hsl(180, 2%, 11%);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px;
+      box-sizing: border-box; 
+      width: max-content;
+      height: 1000px;
+    }
+    .title{
+      text-align: center;
+    }
+    button{
+      width: 70px;
+      height: 70px;
+      margin: 2px;
+      border-radius: 10px;
+      background-color: rgb(61, 61, 61);
+      color: white;
+      border: none;
+      font-size: 18px;
+      font-family: Arial;
+      font-weight: bold;
+    }
+    .equal-button{
+      width: 146px;
+      margin: 1px;
+      background-color: hsl(25, 100%, 42%);
+    }
+    input{
+      width: 295px;
+      height: 60px;
+      margin-bottom: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 10px;
+      font-size: 30px;
+      padding: 0px 10px;
+      font-weight: bold;
+      text-align: right;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header class="title">
+    <h1>CALCULATORICISM</h1>
+  </header>
+
+ <input id="screen" readonly>
+
+<br>
+
+    <!-- Numbers -->
+    <button onclick="press7()">7</button>
+    <button onclick="press8()">8</button>
+    <button onclick="press9()">9</button>
+
+    <button onclick="press4()">4</button>
+    <button onclick="press5()">5</button>
+    <button onclick="press6()">6</button>
+
+    <button onclick="press1()">1</button>
+    <button onclick="press2()">2</button>
+    <button onclick="press3()">3</button>
+
+    <button onclick="press0()">0</button>
+
+    <br>
+
+    <!-- Operators -->
+    <button onclick="add()">+</button>
+    <button onclick="subtract()">-</button>
+    <button onclick="multiply()">×</button>
+    <button onclick="divide()">/</button>
+
+    <br>
+
+    <!-- Other -->
+    <button onclick="equals()">=</button>
+    <button onclick="clearAll()">AC</button>
+
+
+  <script>
+
+    const screen = document.getElementById('screen');
+
+    let total = null;      // running result
+    let operator = null;   // last operator pressed
+
+    // Numbers
+    function press7() { screen.value += '7'; }
+    function press8() { screen.value += '8'; }
+    function press9() { screen.value += '9'; }
+    function press4() { screen.value += '4'; }
+    function press5() { screen.value += '5'; }
+    function press6() { screen.value += '6'; }
+    function press1() { screen.value += '1'; }
+    function press2() { screen.value += '2'; }
+    function press3() { screen.value += '3'; }
+    function press0() { screen.value += '0'; }
+
+    // Operators
+    function add() {
+      saveNumber();
+      operator = '+';
+    }
+    function subtract() {
+      saveNumber();
+      operator = '-';
+    }
+    function multiply() {
+      saveNumber();
+      operator = '×';
+    }
+    function divide() {
+      saveNumber();
+      operator = '/';
+    }
+
+    // Save current number to total
+    function saveNumber() {
+      let current = Number(screen.value);
+
+      if (total === null) {
+        total = current;  // first number
+      } else {
+        // do previous operation
+        if (operator === '+') total += current;
+        if (operator === '-') total -= current;
+        if (operator === '×') total *= current;
+        if (operator === '/') total /= current;
+      }
+
+      screen.value = ''; // clear for next number
+    }
+
+    // Equals
+    function equals() {
+      saveNumber();
+      screen.value = total;
+      total = null;
+      operator = null;
+    }
+
+    // Clear
+    function clearAll() {
+      screen.value = '';
+      total = null;
+      operator = null;
+    }
+
+  </script>
+</body>
+</html>

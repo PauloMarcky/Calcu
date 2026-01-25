@@ -71,188 +71,91 @@
   <div class="outer-container">
     <input class="displayer" type="text" readonly>
     <div>    
-      <button class="clear">AC</button>
+      <button onclick="allClear()">AC</button>
       <button>%</button>
-      <button class="backspace"><<</button>
-      <button class="division">/</button>
+      <button onclick="backspace()""><<</button>
+      <button onclick="divide()">/</button>
     </div>
     <div>    
-      <button class="n7">7</button>
-      <button class="n8">8</button>
-      <button class="n9">9</button>
-      <button class="multiplication">x</button>
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+      <button onclick="multiply()">x</button>
     </div>
     <div>    
-      <button class="n4">4</button>
-      <button class="n5">5</button>
-      <button class="n6">6</button>
-      <button class="subtraction">-</button>
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+      <button onclick="subtract()">-</button>
     </div>    
     <div>    
-      <button class="n1">1</button>
-      <button class="n2">2</button>
-      <button class="n3">3</button>
-      <button class="addition">+</button>
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+      <button onclick="add()">+</button>
     </div>    
     <div>   
-      <button class="n0">0</button>
-      <button class=".">.</button>
-      <button class="equal-button">=</button>
+      <button onclick="append('0')">0</button>
+      <button>.</button>
+      <button class="equal-button" onclick="displayResult()">=</button>
     </div>
   </div>
 
   <script>
-// 1. Use an attribute selector [class=""] for classes that are numbers
-    const display = document.querySelector('.displayer');
-    const button_7 = document.querySelector('.n7');
-    const button_8 = document.querySelector('.n8');
-    const button_9 = document.querySelector('.n9');
-    const button_4 = document.querySelector('.n4');
-    const button_5 = document.querySelector('.n5');
-    const button_6 = document.querySelector('.n6');
-    const button_1 = document.querySelector('.n1');
-    const button_2 = document.querySelector('.n2');
-    const button_3 = document.querySelector('.n3');
-    const button_0 = document.querySelector('.n0');
-    const multiply_button = document.querySelector('.multiplication')
-    const division_button = document.querySelector('.division');
-    const addition_button = document.querySelector('.addition');
-    const subtraction_button = document.querySelector('.subtraction');
-    const js_clear = document.querySelector('.clear');
-    const js_backspace = document.querySelector('.backspace');
-    const equals = document.querySelector('.equal-button');
-    let f_number = '';
-    let s_number = '';
-    let current_op = '';
-    let result = '';
 
-    function but7() {
-      display.value += '7';
-    }
-    function but8() {
-      display.value += '8';
-    }
-    function but9() {
-      display.value += '9';
-    }
-    function but4() {
-      display.value += '4';
-    }
-    function but5() {
-      display.value += '5';
-    }
-    function but6() {
-      display.value += '6';
-    }
-    function but1() {
-      display.value += '1';
-    }
-    function but2() {
-      display.value += '2';
-    }
-    function but3() {
-      display.value += '3';
-    }
-    function but0() {
-      display.value += '0';
-    }
-    function multiply() {
-      f_number = display.value
-      f_number = Number(f_number);
-      display.value = "";
-      current_op = "x";
-      console.log(typeof(f_number));
-    }
-    function divide() {
-      f_number = display.value
-      f_number = Number(f_number);
-      display.value = "";
-      current_op = "d";
-      console.log(typeof(f_number));
-    }
-    function add() {
-      f_number = display.value
-      f_number = Number(f_number);
-      display.value = "";
-      current_op = "a";
-      console.log(typeof(f_number));
-    }
-    function subtract() {
-      f_number = display.value;
-      f_number = Number(f_number);
-      display.value = "";
-      current_op = "s";
-      console.log(typeof(f_number));
-    }
-    function display_result(){
-      s_number = display.value;
-      s_number = Number(s_number);
+    const display = document.querySelector(".displayer");
+    let result = null;
+    let operator = null;
 
-      if (current_op == "a"){
-        result = f_number + s_number;
-        result = Number(result);
-        display.value = `= ${result}`;
-      }
-      else if (current_op == "s"){
-        result = f_number - s_number;
-        result = Number(result);
-        display.value = `= ${result}`;
-      }
-      else if (current_op == "x"){
-        result = f_number * s_number;
-        result = Number(result);
-        display.value = `= ${result}`;
-      }
-      else if (current_op == "d"){
-        result = f_number / s_number;
-        result = Number(result);
-        display.value = `= ${result}`;
-      }
+    function append(val){
+      display.value += val;
     }
-    function clear_input(){
+
+    function allClear (){
       display.value = "";
+      result = null;
+      operator = null;
     }
-    function remove_end(){
+
+    function backspace() {
       display.value = display.value.slice(0, -1);
     }
 
-    button_7.onclick = but7;
-    button_8.onclick = but8;
-    button_9.onclick = but9;
-    button_4.onclick = but4;
-    button_5.onclick = but5;
-    button_6.onclick = but6;
-    button_1.onclick = but1;
-    button_2.onclick = but2;
-    button_3.onclick = but3;
-    button_0.onclick = but0;
-    multiply_button.onclick = multiply;
-    division_button.onclick = divide;
-    addition_button.onclick = add;
-    subtraction_button.onclick = subtract;
-    equals.onclick = display_result;
-    js_clear.onclick = clear_input;
-    js_backspace.onclick = remove_end;
+    function setRes(){
+      let currentNumber = Number(display.value);
 
+      if (result === null){
+        result = currentNumber;
+      }else {
+        if (operator === '+') {
+          result += currentNumber;
+        }else if (operator === )
+      }
+      display.value = '';
+    }
 
-    // algo
-    // input Number
-    // click operation
-    // get input number 
-    // input next number
-    // click equal
-    // get second number 
-    // if condition checking operation
-    // show result 
+    function add(){
+      operator = '+';
+      setRes();
+    }
+    function subtract(){
+      setRes();
 
+      operator = '-';
+    }
+    function multiply(){
+      setRes();
 
-
-
-
-  
-
-
-
+      operator = 'x';
+    }
+    function divide(){
+      setRes();
+      operator = '/';
+    }
+    function displayResult(){
+      setRes();
+      display.value = result;
+    }
 
   </script>
 </body>
