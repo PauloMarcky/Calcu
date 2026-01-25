@@ -129,11 +129,14 @@
       }else {
         if (operator === '+') {
           result += currentNumber;
-        }else if (operator === '-'){
+        };
+        if (operator === '-'){
           result -= currentNumber;
-        }else if (operator === 'x'){
+        };
+        if (operator === 'x'){
           result *= currentNumber;
-        }else if (operator === '/'){
+        };
+        if (operator === '/'){
           result /= currentNumber;
         }
       }
@@ -141,20 +144,20 @@
     }
 
     function add(){
-      operator = '+';
       setRes();
+      operator = '+';
     }
     function subtract(){
-      operator = '-';
       setRes();
+      operator = '-';
     }
     function multiply(){
-      operator = 'x';
       setRes();
+      operator = 'x';
     }
     function divide(){
-      operator = '/';
       setRes();
+      operator = '/';
     }
     function displayResult(){
       setRes();
