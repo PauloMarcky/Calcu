@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CALCULATORICISM</title>
   <style>
+
     body{
       display: flex;
       flex-direction: column;
@@ -72,7 +73,7 @@
     <input class="displayer" type="text" readonly>
     <div>    
       <button onclick="allClear()">AC</button>
-      <button>%</button>
+      <button onclick="percent()">%</button>
       <button onclick="backspace()""><<</button>
       <button onclick="divide()">/</button>
     </div>
@@ -96,7 +97,7 @@
     </div>    
     <div>   
       <button onclick="append('0')">0</button>
-      <button>.</button>
+      <button onclick="append('.')">.</button>
       <button class="equal-button" onclick="displayResult()">=</button>
     </div>
   </div>
@@ -138,6 +139,9 @@
         };
         if (operator === '/'){
           result /= currentNumber;
+        }if (operator === '%'){
+          result = (parseFloat((result / 100) * currentNumber));
+          console.log(result);
         }
       }
       display.value = '';
@@ -158,6 +162,10 @@
     function divide(){
       setRes();
       operator = '/';
+    }
+    function percent(){
+      setRes();
+      operator = '%';
     }
     function displayResult(){
       setRes();
