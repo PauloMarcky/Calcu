@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,28 +9,32 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Micro+5&display=swap" rel="stylesheet">
   <style>
-
-    body{
+    body {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      background-color: rgba(140, 89, 194, 0.569);
     }
-    .outer-container{
-      flex: 1 1 calc(25% - 10px); /* Grow, Shrink, Basis */
+
+    .outer-container {
+      flex: 1 1 calc(25% - 10px);
+      /* Grow, Shrink, Basis */
       background-color: hsl(180, 2%, 11%);
       color: white;
       padding: 20px;
       text-align: center;
       border-radius: 8px;
-      box-sizing: border-box; 
+      box-sizing: border-box;
       width: max-content;
       height: 1000px;
     }
-    .title{
+
+    .title {
       text-align: center;
     }
-    button{
+
+    button {
       width: 70px;
       height: 70px;
       margin: 2px;
@@ -41,32 +46,35 @@
       font-family: Arial;
       font-weight: bold;
     }
-    .equal-button{
+
+    .equal-button {
       width: 146px;
       margin: 1px;
       background-color: hsl(25, 100%, 42%);
     }
-    input{
+
+    input {
       width: 295px;
       height: 60px;
       margin-bottom: 20px;
       margin-top: 10px;
       border: none;
       border-radius: 10px;
-      font-size: 55px;
+      font-size: 40px;
       padding: 0px 10px;
       font-weight: bold;
       text-align: right;
-      font-family: "Micro 5";
+      font-family: "Arial";
     }
+
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
-
   </style>
 </head>
+
 <body>
 
   <header class="title">
@@ -75,31 +83,31 @@
 
   <div class="outer-container">
     <input class="displayer" type="text" readonly>
-    <div>    
+    <div>
       <button onclick="allClear()">AC</button>
       <button onclick="percent()">%</button>
       <button onclick="backspace()""><<</button>
-      <button onclick="divide()">/</button>
+      <button onclick=" divide()">/</button>
     </div>
-    <div>    
+    <div>
       <button onclick="append('7')">7</button>
       <button onclick="append('8')">8</button>
       <button onclick="append('9')">9</button>
       <button onclick="multiply()">x</button>
     </div>
-    <div>    
+    <div>
       <button onclick="append('4')">4</button>
       <button onclick="append('5')">5</button>
       <button onclick="append('6')">6</button>
       <button onclick="subtract()">-</button>
-    </div>    
-    <div>    
+    </div>
+    <div>
       <button onclick="append('1')">1</button>
       <button onclick="append('2')">2</button>
       <button onclick="append('3')">3</button>
       <button onclick="add()">+</button>
-    </div>    
-    <div>   
+    </div>
+    <div>
       <button onclick="append('0')">0</button>
       <button onclick="append('.')">.</button>
       <button class="equal-button" onclick="displayResult()">=</button>
@@ -112,11 +120,11 @@
     let result = null;
     let operator = null;
 
-    function append(val){
+    function append(val) {
       display.value += val;
     }
 
-    function allClear (){
+    function allClear() {
       display.value = "";
       result = null;
       operator = null;
@@ -124,57 +132,57 @@
 
     function backspace() {
       display.value = display.value.slice(0, -1);
-      if (display.value === ""){
+      if (display.value === "") {
         result = null;
         operator = null;
       }
     }
 
-    function setRes(){
+    function setRes() {
       let currentNumber = Number(display.value);
 
-      if (result === null){
+      if (result === null) {
         result = currentNumber;
-      }else {
+      } else {
         if (operator === '+') {
           result += currentNumber;
         };
-        if (operator === '-'){
+        if (operator === '-') {
           result -= currentNumber;
         };
-        if (operator === 'x'){
+        if (operator === 'x') {
           result *= currentNumber;
         };
-        if (operator === '/'){
+        if (operator === '/') {
           result /= currentNumber;
-        }if (operator === '%'){
+        } if (operator === '%') {
           result = (parseFloat((result / 100) * currentNumber));
         }
       }
       display.value = '';
     }
 
-    function add(){
+    function add() {
       setRes();
       operator = '+';
     }
-    function subtract(){
+    function subtract() {
       setRes();
       operator = '-';
     }
-    function multiply(){
+    function multiply() {
       setRes();
       operator = 'x';
     }
-    function divide(){
+    function divide() {
       setRes();
       operator = '/';
     }
-    function percent(){
+    function percent() {
       setRes();
       operator = '%';
     }
-    function displayResult(){
+    function displayResult() {
       setRes();
       let finalRes = result.toLocaleString();
       display.value = finalRes;
@@ -182,4 +190,5 @@
 
   </script>
 </body>
+
 </html>
